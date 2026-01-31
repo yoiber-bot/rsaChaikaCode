@@ -127,7 +127,7 @@ def print_quick_start():
   --group-size K    Group size for aggregation (3-5)
   --loops L         Number of refinement rounds (3-10)
   --temperature T   Creativity level (0.7-1.3)
-  --model M         Gemini model (default: gemini-pro)
+  --model M         Gemini model (default: gemini-flash-latest)
   --quiet           Only show final result
 
 ┌──────────────────────────────────────────────────────────────┐

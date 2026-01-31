@@ -4,7 +4,7 @@ Main class that implements the complete RSA pipeline
 """
 
 from typing import List, Optional
-from src.gemini_client import GeminiClient
+from src.gemini_client import OpenAIClient
 from src.aggregation import create_groups, create_aggregation_prompt, create_final_aggregation_prompt
 
 
@@ -16,10 +16,10 @@ class RSAOrchestrator:
     def __init__(
         self,
         api_key: Optional[str] = None,
-        model_name: str = "gemini-pro",
-        population_size: int = 16,
+        model_name: str = "gpt-4o",
+        population_size: int = 8,
         group_size: int = 4,
-        loops: int = 5,
+        loops: int = 3,
         temperature: float = 1.0,
         verbose: bool = True
     ):
@@ -35,7 +35,7 @@ class RSAOrchestrator:
             temperature: Temperature for response generation (diversity)
             verbose: Whether to print progress messages
         """
-        self.client = GeminiClient(api_key=api_key, model_name=model_name)
+        self.client = OpenAIClient(api_key=api_key, model_name=model_name)
         self.population_size = population_size
         self.group_size = group_size
         self.loops = loops
@@ -74,7 +74,7 @@ class RSAOrchestrator:
             prompt=prompt,
             count=self.population_size,
             temperature=self.temperature,
-            delay=0.5
+            delay=1.0
         )
         
         self._log(f"\n✅ Población inicial generada: {len(responses)} respuestas")

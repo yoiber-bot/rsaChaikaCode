@@ -139,7 +139,7 @@ Final Refined Solution
 - `group_size`: Size of aggregation groups (default: 4)
 - `loops`: Number of RSA iterations (default: 5)
 - `temperature`: Diversity control (default: 1.0)
-- `model`: Gemini model selection (default: gemini-pro)
+- `model`: Gemini model selection (default: gemini-flash-latest)
 
 ### 2. Intelligent Aggregation
 - Spanish-language prompts optimized for quality

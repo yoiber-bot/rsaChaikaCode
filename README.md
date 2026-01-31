@@ -15,7 +15,7 @@ RSA (Recursive Self-Aggregation) es una técnica que convierte un LLM normal en 
 
 ## 🚀 Características
 
-- ✅ Integración con **Google Gemini Pro API**
+- ✅ Integración con **Google Gemini API**
 - ✅ Pipeline completamente automatizado
 - ✅ Parámetros configurables (población, grupos, loops, temperatura)
 - ✅ Manejo de rate limits y reintentos
@@ -97,7 +97,7 @@ python main.py "Tu prompt aquí" --quiet
 - `--group-size K`: Tamaño de grupos para agregación (default: 4)
 - `--loops L`: Número de iteraciones RSA (default: 5)
 - `--temperature T`: Temperatura para diversidad (0.0-2.0, default: 1.0)
-- `--model M`: Modelo de Gemini (default: gemini-pro)
+- `--model M`: Modelo de Gemini (default: gemini-flash-latest)
 - `--quiet`: Solo muestra el resultado final
 - `--api-key KEY`: API key alternativa
 

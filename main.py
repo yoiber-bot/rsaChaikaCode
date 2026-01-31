@@ -37,8 +37,8 @@ Para más información: https://github.com/yoiber-bot/rsaChaikaCode
     parser.add_argument(
         '--population',
         type=int,
-        default=16,
-        help='Tamaño de población inicial (default: 16)'
+        default=8,
+        help='Tamaño de población inicial (default: 8)'
     )
     
     parser.add_argument(
@@ -51,8 +51,8 @@ Para más información: https://github.com/yoiber-bot/rsaChaikaCode
     parser.add_argument(
         '--loops',
         type=int,
-        default=5,
-        help='Número de loops RSA (default: 5)'
+        default=3,
+        help='Número de loops RSA (default: 3)'
     )
     
     parser.add_argument(
@@ -65,8 +65,8 @@ Para más información: https://github.com/yoiber-bot/rsaChaikaCode
     parser.add_argument(
         '--model',
         type=str,
-        default='gemini-pro',
-        help='Modelo de Gemini a usar (default: gemini-pro)'
+        default='gpt-4o',
+        help='Modelo a usar (default: gpt-4o, disponibles: gpt-4o, gpt-4o-mini, gpt-4-turbo)'
     )
     
     parser.add_argument(
