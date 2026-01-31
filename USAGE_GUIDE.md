@@ -9,6 +9,15 @@
 git clone https://github.com/yoiber-bot/rsaChaikaCode.git
 cd rsaChaikaCode
 
+# Crear entorno virtual
+python -m venv venv
+
+# Activar entorno virtual
+# En Linux/Mac:
+source venv/bin/activate
+# En Windows:
+# venv\Scripts\activate
+
 # Instalar dependencias
 pip install -r requirements.txt
 
@@ -16,6 +25,8 @@ pip install -r requirements.txt
 cp .env.example .env
 # Editar .env y agregar tu GEMINI_API_KEY
 ```
+
+> **Importante**: Siempre activa el entorno virtual antes de trabajar con el proyecto usando `source venv/bin/activate` (Linux/Mac) o `venv\Scripts\activate` (Windows)
 
 ### 2. Obtener API Key de Google Gemini
 

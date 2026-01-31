@@ -15,7 +15,21 @@ def print_quick_start():
 │ STEP 1: Installation                                         │
 └──────────────────────────────────────────────────────────────┘
 
+  # Crear entorno virtual
+  python -m venv venv
+  
+  # Activar entorno virtual
+  # En Linux/Mac:
+  source venv/bin/activate
+  # En Windows:
+  # venv\\Scripts\\activate
+  
+  # Instalar dependencias
   pip install -r requirements.txt
+
+  ⚠️  Recuerda activar el entorno virtual cada vez con:
+      source venv/bin/activate (Linux/Mac)
+      venv\\Scripts\\activate (Windows)
 
 ┌──────────────────────────────────────────────────────────────┐
 │ STEP 2: Configuration                                        │
