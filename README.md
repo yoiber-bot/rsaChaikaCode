@@ -15,10 +15,11 @@ RSA (Recursive Self-Aggregation) es una técnica que convierte un LLM normal en 
 
 ## 🚀 Características
 
-- ✅ Integración con **Google Gemini API**
+- ✅ Integración con **GitHub Models** (GPT-4o, GPT-4o-mini, Llama, Mistral, etc.)
+- ✅ **Uso gratuito** para desarrollo personal
 - ✅ Pipeline completamente automatizado
 - ✅ Parámetros configurables (población, grupos, loops, temperatura)
-- ✅ Manejo de rate limits y reintentos
+- ✅ Manejo inteligente de rate limits y reintentos
 - ✅ Interfaz CLI y API programática
 - ✅ Logging detallado del proceso
 - ✅ Ideal para tareas complejas:
@@ -31,7 +32,7 @@ RSA (Recursive Self-Aggregation) es una técnica que convierte un LLM normal en 
 ## 📋 Requisitos
 
 - Python 3.7+
-- API Key de Google Gemini (gratuita en [Google AI Studio](https://makersuite.google.com/app/apikey))
+- GitHub Personal Access Token (gratuito en [GitHub Settings](https://github.com/settings/tokens))
 
 ## 🔧 Instalación
 
@@ -41,31 +42,38 @@ git clone https://github.com/yoiber-bot/rsaChaikaCode.git
 cd rsaChaikaCode
 ```
 
-2. **Crear entorno virtual**:
+2. **Configurar versión de Python (si usas pyenv)**:
+```bash
+pyenv local 3.11.9
+```
+
+3. **Crear entorno virtual**:
 ```bash
 python -m venv venv
 ```
 
-3. **Activar el entorno virtual**:
+4. **Activar el entorno virtual**:
    - En Linux/Mac:
    ```bash
    source venv/bin/activate
    ```
    - En Windows:
-   ```bash
-   venv\Scripts\activate
+   ```powershell
+   .\venv\Scripts\activate
    ```
 
-4. **Instalar dependencias**:
+5. **Instalar dependencias**:
 ```bash
 pip install -r requirements.txt
 ```
 
-5. **Configurar API Key**:
-```bash
-cp .env.example .env
-# Editar .env y agregar tu GEMINI_API_KEY
-```
+6. **Configurar GitHub Token**:
+   - Ve a [github.com/settings/tokens](https://github.com/settings/tokens)
+   - Crea un nuevo Personal Access Token (no necesitas permisos especiales)
+   - Crea un archivo `.env` en la raíz del proyecto:
+   ```bash
+   echo "GITHUB_TOKEN=tu_token_aqui" > .env
+   ```
 
 > **Nota**: Recuerda activar el entorno virtual cada vez que trabajes en el proyecto usando `source venv/bin/activate` (Linux/Mac) o `venv\Scripts\activate` (Windows)
 
@@ -93,13 +101,13 @@ python main.py "Tu prompt aquí" --quiet
 ```
 
 **Opciones disponibles**:
-- `--population N`: Tamaño de población inicial (default: 16)
+- `--population N`: Tamaño de población inicial (default: 8)
 - `--group-size K`: Tamaño de grupos para agregación (default: 4)
-- `--loops L`: Número de iteraciones RSA (default: 5)
+- `--loops L`: Número de iteraciones RSA (default: 3)
 - `--temperature T`: Temperatura para diversidad (0.0-2.0, default: 1.0)
-- `--model M`: Modelo de Gemini (default: gemini-flash-latest)
+- `--model M`: Modelo a usar (default: gpt-4o, disponibles: gpt-4o, gpt-4o-mini, gpt-4-turbo)
 - `--quiet`: Solo muestra el resultado final
-- `--api-key KEY`: API key alternativa
+- `--api-key KEY`: GitHub token alternativo
 
 ### Uso Programático (API Python)
 
@@ -108,9 +116,10 @@ from src.rsa_orchestrator import RSAOrchestrator
 
 # Inicializar
 rsa = RSAOrchestrator(
-    population_size=16,
+    model_name="gpt-4o",  # o "gpt-4o-mini" para más velocidad
+    population_size=8,
     group_size=4,
-    loops=5,
+    loops=3,
     temperature=1.0,
     verbose=True
 )
@@ -192,13 +201,13 @@ Consolidación final → Solución óptima
 
 ## 📊 Casos de Uso Ideales
 
-| Tarea | Población | Grupos | Loops | Temperatura |
-|-------|-----------|--------|-------|-------------|
-| **Código simple** | 8 | 4 | 3 | 1.0 |
-| **Algoritmos complejos** | 16 | 4 | 5 | 1.1 |
-| **Diseño de sistemas** | 20 | 5 | 7 | 1.2 |
-| **Debugging** | 12 | 3 | 4 | 0.9 |
-| **Razonamiento lógico** | 16 | 4 | 6 | 1.0 |
+| Tarea | Población | Grupos | Loops | Modelo |
+|-------|-----------|--------|-------|--------|
+| **Código simple** | 4 | 4 | 2 | gpt-4o-mini |
+| **Algoritmos complejos** | 8 | 4 | 3 | gpt-4o |
+| **Diseño de sistemas** | 12 | 4 | 3 | gpt-4o |
+| **Debugging** | 6 | 3 | 2 | gpt-4o-mini |
+| **Razonamiento lógico** | 8 | 4 | 3 | gpt-4o |
 
 ## 🏗️ Estructura del Proyecto
 
@@ -206,30 +215,32 @@ Consolidación final → Solución óptima
 rsaChaikaCode/
 ├── src/
 │   ├── __init__.py
-│   ├── gemini_client.py      # Cliente API de Gemini
+│   ├── gemini_client.py      # Cliente API (GitHub Models)
 │   ├── aggregation.py         # Lógica de agregación
 │   └── rsa_orchestrator.py    # Orquestador principal
 ├── main.py                     # CLI
 ├── examples.py                 # Ejemplos de uso
 ├── requirements.txt            # Dependencias
-├── .env.example                # Template de configuración
+├── .env                        # Configuración (crear manualmente)
 └── README.md                   # Este archivo
 ```
 
 ## 🔒 Seguridad
 
-- **No incluyas** tu API key en el código
+- **No incluyas** tu GitHub token en el código
 - Usa el archivo `.env` (está en `.gitignore`)
 - No compartas tu `.env` en repositorios públicos
+- El token solo necesita acceso básico (sin permisos especiales)
 
 ## 📝 Limitaciones
 
-- Requiere API key de Google Gemini
-- Sujeto a rate limits de la API (se manejan automáticamente)
+- Requiere GitHub Personal Access Token (gratuito)
+- Sujeto a rate limits de GitHub Models (15 RPM, se manejan automáticamente)
 - El tiempo de ejecución depende de la configuración:
-  - Configuración básica: ~2-5 minutos
-  - Configuración avanzada: ~10-20 minutos
-- Costo de API basado en número de tokens
+  - Configuración rápida (4 población, 2 loops): ~1-2 minutos
+  - Configuración estándar (8 población, 3 loops): ~3-5 minutos
+  - Configuración compleja (12 población, 3 loops): ~5-8 minutos
+- **GitHub Models es gratuito para uso personal y desarrollo**
 
 ## 🤝 Contribuciones
 
